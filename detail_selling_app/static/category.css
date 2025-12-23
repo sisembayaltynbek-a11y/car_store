@@ -1,0 +1,225 @@
+/* Ultra Minimal Category Page */
+section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+h1 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 2rem;
+    font-weight: 500;
+}
+
+/* Simple Grid */
+.cars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Clean Card */
+.car-card {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background: white;
+    transition: border-color 0.2s;
+}
+
+.car-card:hover {
+    border-color: #666;
+}
+
+.car-image-container {
+    height: 180px;
+    overflow: hidden;
+    background: #f5f5f5;
+}
+
+.car-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.car-content {
+    padding: 2rem;
+}
+
+.car-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #222;
+}
+
+.car-price {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 0.75rem;
+}
+
+.car-excerpt {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+}
+
+.car-details {
+    display: flex;
+    justify-content: space-between;
+    color: #777;
+    font-size: 0.85rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #eee;
+}
+
+/* ===============================
+   TikTok Like & Square Cart Buttons
+   =============================== */
+
+/* Shared form styling */
+.car-card form,
+#in_details form {
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+/* ===============================
+   LIKE BUTTON (TikTok Style)
+   =============================== */
+
+.like-btn {
+    width: 44px;
+    height: 44px;
+
+    border-radius: 50%;
+    border: none;
+
+    background: #ffffff;
+    color: #ef4444;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 18px;
+    cursor: pointer;
+
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.25s ease;
+}
+
+/* Hover */
+.like-btn:hover {
+    transform: scale(1.15);
+    box-shadow: 0 10px 24px rgba(239, 68, 68, 0.35);
+}
+
+/* Active click */
+.like-btn:active {
+    transform: scale(0.95);
+}
+
+/* Liked state (server can toggle class) */
+.like-btn.liked {
+    background: #ef4444;
+    color: #ffffff;
+    animation: like-pop 0.45s ease;
+}
+
+/* TikTok pop animation */
+@keyframes like-pop {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.35); }
+    100% { transform: scale(1); }
+}
+
+/* ===============================
+   ADD TO CART (Square Button)
+   =============================== */
+
+.cart-btn {
+    min-width: 120px;
+    height: 44px;
+
+    padding: 0 18px;
+    border-radius: 8px;
+    border: none;
+
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.25s ease;
+}
+
+/* Hover */
+.cart-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(34, 197, 94, 0.35);
+}
+
+/* Active */
+.cart-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 10px rgba(34, 197, 94, 0.25);
+}
+
+/* Disabled */
+.cart-btn:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* ===============================
+   MOBILE
+   =============================== */
+
+@media (max-width: 640px) {
+    .car-card form,
+    #in_details form {
+        justify-content: center;
+    }
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .cars-grid {
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    section {
+        padding: 1rem;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+}

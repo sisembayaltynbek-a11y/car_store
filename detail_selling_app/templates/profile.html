@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+{% load socialaccount %}
+{% load static %}
+
+{% block page_title %}{{user.username}}'s Profile{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'profile.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <section id="user_items">
+        <div class="profile-container">
+            <header>    
+                <h1>Your Profile</h1>
+            </header>
+
+            <!-- Profile Sidebar -->
+            <aside class="profile-sidebar">
+                <div class="user-avatar">
+                    {% if user.is_authenticated %}
+                        {% get_social_accounts user as accounts %}
+                        {% if accounts.google %}
+                            {% for account in accounts.google %}
+                                <img src="{{account.extra_data.picture}}" alt="{{account.extra_data.name}}">
+                                <h1>{{account.extra_data.name}} <span>@{{user.username}}</span></h1>
+                            {% endfor %}
+                        {% else %}
+                            <div class="default-avatar">
+                                <i class="fas fa-user-circle fa-7x" style="color: #3b82f6;"></i>
+                                <h1>{{user.username}} <span>Member</span></h1>
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        <div class="default-avatar">
+                            <i class="fas fa-user-circle fa-7x" style="color: #94a3b8;"></i>
+                            <h1>Guest User <span>Not Logged In</span></h1>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- User Stats -->
+                <div class="user-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">0</span>
+                        <span class="stat-label">Cars Listed</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">0</span>
+                        <span class="stat-label">Messages</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">0</span>
+                        <span class="stat-label">Saved</span>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'form' %}" class="sell-btn">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Sell Your Car</span>
+                        </a>
+                        <a href="{% url 'account_logout' %}" class="logout-btn">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </a>
+                    {% else %}
+                        <a href="{% url 'account_login' %}" class="sell-btn">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span>Login to Continue</span>
+                        </a>
+                        <a href="{% url 'account_signup' %}" class="sell-btn" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                            <i class="fas fa-user-plus"></i>
+                            <span>Create Account</span>
+                        </a>
+                    {% endif %}
+                </div>
+            </aside>
+
+            <!-- Profile Main Content -->
+            <main class="profile-main">
+                <!-- Authentication Status -->
+                <div class="auth-status">
+                    <p class="auth-message">
+                        {% if user.is_authenticated %}
+                            <i class="fas fa-check-circle" style="color: #10b981; margin-right: 10px;"></i>
+                            Welcome back! You're successfully logged in.
+                            <br><br>
+                            <span class="highlight">{{user.username}}</span>
+                        {% else %}
+                            <i class="fas fa-info-circle" style="color: #3b82f6; margin-right: 10px;"></i>
+                            Hello! Please log in to access your profile features.
+                        {% endif %}
+                    </p>
+                </div>
+
+                {% if user.is_authenticated %}
+                    <!-- Social Account Information -->
+                    {% get_social_accounts user as accounts %}
+                    {% if accounts.google %}
+                        <div class="social-account-info">
+                            <h2><i class="fab fa-google"></i> Google Account Information</h2>
+                            {% for account in accounts.google %}
+                                <div class="account-details">
+                                    <img src="{{account.extra_data.picture}}" alt="{{account.extra_data.name}}">
+                                    <div class="account-info">
+                                        <h3>{{account.extra_data.name}}</h3>
+                                        <p><i class="fas fa-check-circle" style="color: #10b981;"></i> Connected via Google OAuth</p>
+                                        <p><i class="fas fa-envelope" style="color: #3b82f6;"></i> {{account.extra_data.email}}</p>
+                                        {% if account.extra_data.locale %}
+                                            <p><i class="fas fa-globe" style="color: #8b5cf6;"></i> Language: {{account.extra_data.locale}}</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="social-account-info">
+                            <h2><i class="fas fa-user-shield"></i> Account Security</h2>
+                            <div class="account-details">
+                                <div class="account-info">
+                                    <h3>Standard Account</h3>
+                                    <p><i class="fas fa-info-circle" style="color: #3b82f6;"></i> You're using email/password authentication</p>
+                                    <div class="security-tips">
+                                        <h4><i class="fas fa-shield-alt"></i> Security Tips:</h4>
+                                        <ul>
+                                            <li>Use a strong, unique password</li>
+                                            <li>Enable two-factor authentication if available</li>
+                                            <li>Regularly review your account activity</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <!-- Profile Features Grid -->
+                            <div class="features-grid">
+                                <h2><i class="fas fa-star" style="color: #f59e0b;"></i> Profile Features</h2>
+                                <div class="features-container">
+                                    <div class="feature-card">
+                                <a href="{% url 'cart' %}" class="feature-link">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-car"></i>
+                                    </div>
+                                    <h3>My Listings</h3>
+                                    <p>View and manage all your car listings in one place</p>
+                                </a>
+                            </div>
+
+                            <!-- FIXED CARD -->
+                            <div class="feature-card">
+                                <a href="{% url 'liked-cars' %}" class="feature-link">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-heart"></i>
+                                    </div>
+                                    <h3>Saved Cars</h3>
+                                    <p>Quick access to your favorite vehicle listings</p>
+                                </a>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                                <h3>Messages</h3>
+                                <p>Communicate with potential buyers and sellers</p>
+                                <span class="feature-status">Coming Soon</span>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-cog"></i>
+                                </div>
+                                <h3>Settings</h3>
+                                <p>Customize your profile and notification preferences</p>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <!-- Guest User Content -->
+                    <div class="guest-content">
+                        <div class="guest-info">
+                            <h2><i class="fas fa-user-plus"></i> Create Your Account Today!</h2>
+                            <p>Join our community to unlock amazing features:</p>
+                            
+                            <div class="benefits-list">
+                                <div class="benefit-item">
+                                    <i class="fas fa-check-circle" style="color: #10b981;"></i>
+                                    <span>Sell your car to thousands of potential buyers</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-check-circle" style="color: #10b981;"></i>
+                                    <span>Save your favorite car listings</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-check-circle" style="color: #10b981;"></i>
+                                    <span>Receive price alerts and notifications</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-check-circle" style="color: #10b981;"></i>
+                                    <span>Connect with sellers directly</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-check-circle" style="color: #10b981;"></i>
+                                    <span>Track your listings and messages</span>
+                                </div>
+                            </div>
+                            
+                            <div class="guest-actions">
+                                <a href="{% url 'account_login' %}" class="primary-btn">
+                                    <i class="fas fa-sign-in-alt"></i>
+                                    Login to Your Account
+                                </a>
+                                <a href="{% url 'account_signup' %}" class="secondary-btn">
+                                    <i class="fas fa-user-plus"></i>
+                                    Create New Account
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </main>
+        </div>
+    </section>
+{% endblock %}

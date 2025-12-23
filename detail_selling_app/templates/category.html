@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_title %}{{category.brand}} Cars{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'category.css' %}">
+    <link rel="stylesheet" href="{% static 'car.css' %}">
+    <section class="cars-grid">
+        {% for car in cars %}
+            {% include "include/car.html" %}
+        {% endfor %}
+    </section>
+{% endblock %}

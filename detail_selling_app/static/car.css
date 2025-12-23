@@ -1,0 +1,156 @@
+/* ===============================
+   Car Card
+   =============================== */
+.car-card {
+    position: relative;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.car-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* ===============================
+   Car Image
+   =============================== */
+.car-image-container {
+    position: relative;
+}
+
+.car-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.car-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #22c55e;
+    color: white;
+    padding: 4px 8px;
+    font-size: 12px;
+    border-radius: 6px;
+}
+
+/* ===============================
+   Car Content
+   =============================== */
+.car-content {
+    padding: 16px;
+    padding-bottom: 60px; /* extra space for buttons below */
+}
+
+.car-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.car-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #16a34a;
+    margin-bottom: 8px;
+}
+
+.car-excerpt {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-bottom: 12px;
+}
+
+.car-details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #4b5563;
+    margin-bottom: 8px;
+}
+
+/* Shift brand/date info down to avoid overlap with buttons */
+.car-details span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* ===============================
+   ADD TO CART BUTTON (square)
+   =============================== */
+.add-to-cart-form {
+    position: absolute;
+    bottom: 12px;
+    left: 16px;
+}
+
+.cart-btn {
+    width: 42px;
+    height: 42px;
+    background: #22c55e;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cart-btn:hover {
+    background: #16a34a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(34, 197, 94, 0.35);
+}
+
+/* ===============================
+   LIKE BUTTON (icon only)
+   =============================== */
+.like-form {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+}
+
+.like-btn {
+    background: transparent;
+    border: none;
+    padding: 0;
+    font-size: 22px;
+    color: #9ca3af;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.like-btn:hover {
+    transform: scale(1.25);
+    color: #ef4444;
+}
+
+.like-btn.liked {
+    color: #ef4444;
+}
+
+/* ===============================
+   Responsive
+   =============================== */
+@media (max-width: 640px) {
+    .car-card {
+        margin-bottom: 20px;
+    }
+    .cart-btn {
+        width: 38px;
+        height: 38px;
+    }
+    .like-btn {
+        font-size: 20px;
+    }
+}

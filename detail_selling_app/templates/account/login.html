@@ -1,0 +1,31 @@
+{% load static %}
+{% load socialaccount %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'account/login.css' %}">
+    <title>
+        {% block page_title %} Login {% endblock %}
+    </title>
+</head>
+<body>
+    {% block content %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Sign In</button>
+            <a href="{% url 'signup' %}"> Sign Up </a>
+            <div class="social-login">
+                <div class="divider"><span>Or</span></div>
+                <a href="{% provider_login_url 'google' %}" class="btn-social btn-google">
+                    <span class="icon"></span>
+                    Sign in with Google
+                </a>
+            </div>
+        </form>
+    {% endblock %}
+</body>
+</html>

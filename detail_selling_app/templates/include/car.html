@@ -1,0 +1,46 @@
+{% load static %}
+
+<div class="car-card">
+    <a href="{% url 'car-details' car.slug %}">
+        <div class="car-image-container">
+            {% if car.image %}
+                <img src="{{ car.image.url }}" alt="{{ car.title }}" class="car-image">
+            {% else %}
+                <img src="{% static 'img/default-car.jpg' %}" class="car-image">
+            {% endif %}
+            <div class="car-badge">New</div>
+        </div>
+
+        <div class="car-content">
+            <h3 class="car-title">{{ car.name }}</h3>
+            <div class="car-price">${{ car.price|floatformat:0 }}</div>
+            <p class="car-excerpt">{{ car.excerpt }}</p>
+            <div class="car-details">
+                <span><i class="fas fa-calendar"></i> {{ car.date|date:"Y"|default:"N/A" }}</span>
+                <span><i class="fas fa-car"></i> {{ car.category.brand }}</span>
+            </div>
+        </div>
+    </a>
+
+    <!-- ADD TO CART -->
+    <form method="POST" action="{% url 'add-to-cart' car.id %}" class="add-to-cart-form">
+        {% csrf_token %}
+        <button class="cart-btn">
+            <i class="fas fa-cart-plus"></i>
+        </button>
+    </form>
+    {% if user.is_authenticated %}
+        <form method="POST" action="{% url 'toggle-like' car.id %}" class="like-form">
+            {% csrf_token %}
+            {% if car in user.seller.liked_cars.all %}
+                <button type="submit" class="like-btn liked">
+                    <i class="fas fa-heart"></i>
+                </button>
+            {% else %}
+                <button type="submit" class="like-btn">
+                    <i class="far fa-heart"></i>
+                </button>
+            {% endif %}
+        </form>
+    {% endif %}
+</div>

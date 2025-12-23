@@ -1,0 +1,178 @@
+/* search.css - Search Results Page Styles */
+
+/* Main container for search results */
+.search-results {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Grid container for car listings */
+.cars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    width: 100%;
+}
+
+/* Individual car item wrapper */
+.search-results > ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Empty state styling */
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 12px;
+    margin: 3rem auto;
+    max-width: 600px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #dee2e6;
+}
+
+.empty-state i {
+    font-size: 4rem;
+    color: #6c757d;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.empty-state h3 {
+    color: #343a40;
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.empty-state p {
+    color: #6c757d;
+    font-size: 1.125rem;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* No results message */
+.content > p {
+    text-align: center;
+    padding: 3rem 2rem;
+    font-size: 1.125rem;
+    color: #6c757d;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin: 2rem auto;
+    max-width: 800px;
+    border-left: 4px solid #dc3545;
+}
+
+/* Page header */
+.content h2 {
+    color: #212529;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #007bff;
+    font-weight: 700;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .cars-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .empty-state {
+        padding: 3rem 1.5rem;
+        margin: 2rem 1rem;
+    }
+    
+    .empty-state i {
+        font-size: 3rem;
+    }
+    
+    .empty-state h3 {
+        font-size: 1.5rem;
+    }
+    
+    .content h2 {
+        font-size: 1.75rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .cars-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .search-results {
+        gap: 1rem;
+        margin: 1rem 0;
+    }
+    
+    .empty-state {
+        padding: 2rem 1rem;
+    }
+}
+
+/* Animation for empty state */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.empty-state {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Loading state (optional - if you add loading indicators) */
+.loading-state {
+    text-align: center;
+    padding: 3rem;
+    color: #6c757d;
+}
+
+.loading-state .spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #007bff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Print styles */
+@media print {
+    .search-results {
+        display: block;
+    }
+    
+    .cars-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    
+    .empty-state {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_title %}Home - CarShop{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'home.css' %}">
+<section class="hero">
+    <div class="hero-content">
+        <h1>Find Your Dream Car</h1>
+        <p>Browse thousands of quality vehicles from trusted sellers</p>
+        <div class="cta-buttons">
+            <a href="{% url 'products' %}" class="btn btn-primary">
+                <i class="fas fa-car"></i> Browse Cars
+            </a>
+            <a href="{% url 'form' %}" class="btn btn-secondary">
+                <i class="fas fa-plus-circle"></i> Sell Your Car
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="categories-section">
+    <div class="page-title">
+        <h1>Browse by Category</h1>
+        <p>Find cars from your favorite brands</p>
+    </div>
+    
+    <div class="categories-grid">
+        {% for category in categories %}
+            <a href="{% url 'category' category.id %}" class="category-card">
+                {% if category.image %}
+                    <img src="{{ category.image.url }}" alt="{{ category.brand }}" class="category-image">
+                {% else %}
+                    <img src="{% static 'img/default-category.jpg' %}" alt="{{ category.brand }}" class="category-image">
+                {% endif %}
+                <div class="category-content">
+                    <h3>{{ category.brand }}</h3>
+                    <p>{{ category.excerpt }}</p>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="stats">
+    <div class="stat-item">
+        <div class="stat-number">{{ categories.count|default:"0" }}</div>
+        <div class="stat-label">Brands</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number">1000+</div>
+        <div class="stat-label">Cars Listed</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number">500+</div>
+        <div class="stat-label">Happy Customers</div>
+    </div>
+</section>
+{% endblock %}

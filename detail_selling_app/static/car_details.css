@@ -1,0 +1,179 @@
+/* =========================
+   CAR DETAILS PAGE STYLES
+   ========================= */
+
+:root {
+    --primary: #1e3a8a;
+    --accent: #2563eb;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --text-dark: #0f172a;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --radius: 14px;
+}
+
+/* Page wrapper */
+#in_details {
+    max-width: 1100px;
+    margin: 3rem auto;
+    padding: 2.5rem;
+    background: #ffffff;
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    color: var(--text-dark);
+}
+
+/* Car name */
+#in_details > h2:first-of-type {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+/* Price */
+#in_details > h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 2rem;
+}
+
+/* Car image */
+#in_details img {
+    width: 100%;
+    max-height: 480px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+}
+
+/* Section titles */
+#in_details h2:not(:first-of-type) {
+    font-size: 1.6rem;
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--border);
+}
+
+/* Description & info blocks */
+#in_details address {
+    background: var(--bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    font-style: normal;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+/* Description text */
+#in_details address h4 {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--text-muted);
+}
+
+/* Owner information */
+#in_details address h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+/* =========================
+   ACTION BUTTONS
+   ========================= */
+
+.details-add-to-cart,
+.details-like-form {
+    display: inline-block;
+    margin-right: 1rem;
+    margin-top: 1rem;
+}
+
+/* Add to cart button */
+.add-to-cart-btn {
+    background: var(--accent);
+    color: #ffffff;
+    border: none;
+    padding: 0.9rem 1.8rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 999px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: all 0.25s ease;
+}
+
+.add-to-cart-btn:hover {
+    background: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.35);
+}
+
+/* Like button */
+.like-btn {
+    background: #ffffff;
+    color: var(--danger);
+    border: 2px solid var(--danger);
+    padding: 0.8rem 1.6rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 999px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: all 0.25s ease;
+}
+
+.like-btn:hover {
+    background: var(--danger);
+    color: #ffffff;
+}
+
+/* Liked state */
+.like-btn.liked {
+    background: var(--danger);
+    color: #ffffff;
+}
+
+/* Login link */
+#in_details p a {
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+#in_details p a:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 768px) {
+    #in_details {
+        padding: 1.5rem;
+    }
+
+    #in_details > h2:first-of-type {
+        font-size: 1.7rem;
+    }
+
+    #in_details > h1 {
+        font-size: 1.5rem;
+    }
+
+    .add-to-cart-btn,
+    .like-btn {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 0.8rem;
+    }
+}

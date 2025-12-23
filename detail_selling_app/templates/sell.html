@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block page_title %}Sell Your Car{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'sell.css' %}">
+</head>
+<body>
+    {% block content %}
+    <div class="sell-container">
+        <h1>Sell Your Car</h1>
+        <p class="subtitle">Fill out the details below to add your car for sale.</p>
+        <div class="sell-card">
+            <a href="{% url 'profile' %}" class="back-link">&larr; Back</a>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {% if field.errors %}
+                            <span class="error">{{ field.errors|striptags }}</span>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>

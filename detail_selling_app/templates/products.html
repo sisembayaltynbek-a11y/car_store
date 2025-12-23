@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_title %}All Cars - CarShop{% endblock %}
+
+    {% block content %}
+    <link rel="stylesheet" href="{% static 'products.css' %}">
+    <link rel="stylesheet" href="{% static 'car.css' %}">
+    <section class="products-header">
+        <h2>All Available Cars</h2>
+        <p>Browse our complete collection of quality vehicles</p>
+    </section>
+
+    <section class="filters-section">
+        <div class="filters-grid">
+            <div class="filter-group">
+                <label for="price-range"><i class="fas fa-tag"></i> Price Range</label>
+                <select id="price-range" class="filter-select">
+                    <option>Any Price</option>
+                    <option>Under $10,000</option>
+                    <option>$10,000 - $20,000</option>
+                    <option>$20,000 - $50,000</option>
+                    <option>Over $50,000</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="category"><i class="fas fa-car"></i> Filter by Category</label>
+                <select id="category" name="category" class="filter-select">
+                    <option value="">All Categories</option>
+                    {% for i in categories %}
+                        <option value="{{ i.id }}">
+                                {{ i.brand }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="year"><i class="fas fa-calendar"></i> Year</label>
+                <select id="year" class="filter-select">
+                    <option>Any Year</option>
+                    <option>2020 or newer</option>
+                    <option>2015 - 2020</option>
+                    <option>2010 - 2015</option>
+                    <option>Before 2010</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <section class="cars-grid">
+        {% for car in all_cars %}
+            {% include "include/car.html" %}
+        {% empty %}
+            <div class="empty-state">
+                <i class="fas fa-car"></i>
+                <h3>No cars found</h3>
+                <p>Check back later for new listings!</p>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock %}

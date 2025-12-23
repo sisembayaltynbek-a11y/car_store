@@ -1,0 +1,144 @@
+/* ===== Global Reset ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ===== Variables ===== */
+:root {
+    --primary: #2563eb;
+    --primary-hover: #1e40af;
+    --bg: #f4f6fb;
+    --card-bg: #ffffff;
+    --text: #1f2937;
+    --border: #d1d5db;
+    --button-text: #ffffff;
+    --error: #dc2626;
+}
+
+/* ===== Body ===== */
+body {
+    min-height: 100vh;
+    background: var(--bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* ===== Container ===== */
+.sell-container {
+    width: 100%;
+    max-width: 550px;
+}
+
+/* ===== Card ===== */
+.sell-card {
+    background: var(--card-bg);
+    padding: 32px;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+/* ===== Titles ===== */
+.sell-container h1 {
+    text-align: center;
+    color: var(--text);
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #6b7280;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* ===== Back Link ===== */
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* ===== Form ===== */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: var(--text);
+}
+
+/* ===== Input Fields ===== */
+.form-group input,
+.form-group textarea,
+.form-group select {
+    padding: 10px 12px;
+    font-size: 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: var(--primary);
+}
+
+/* ===== Textarea ===== */
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* ===== File Input ===== */
+input[type="file"] {
+    padding: 6px 10px;
+}
+
+/* ===== Error Messages ===== */
+.error {
+    color: var(--error);
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+/* ===== Submit Button ===== */
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    border: none;
+    border-radius: 8px;
+    background: var(--primary);
+    color: var(--button-text);
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: var(--primary-hover);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+    .sell-card {
+        padding: 24px;
+    }
+}

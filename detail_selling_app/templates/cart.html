@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}Your Cart{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'cart.css' %}">
+
+<div class="cart-page">
+    <br>
+    <div class="cart-title">
+        <h2>
+            <i class="fas fa-shopping-cart"></i>
+            Your Cart
+        </h2>
+    </div>
+    <br>
+    {% if cart %}
+        <div class="cart-container">
+
+            {% for id, item in cart.items %}
+                <div class="cart-item">
+
+                    {% if item.image %}
+                        <img src="{{ item.image }}" alt="{{ item.name }}">
+                    {% endif %}
+
+                    <div class="cart-info">
+                        <h3>{{ item.name }}</h3>
+                        <p>Quantity: <span class="cart-qty">{{ item.qty }}</span></p>
+                    </div>
+
+                    <div class="cart-price">
+                        ${{ item.price }}
+                    </div>
+
+                </div>
+            {% endfor %}
+
+            <div class="cart-summary">
+                <div class="cart-total">
+                    Total: ${{ total }}
+                </div>
+
+                <button class="checkout-btn">
+                    Checkout
+                </button>
+            </div>
+
+        </div>
+    {% else %}
+        <br><br><br><br>
+        <div class="cart-empty">
+            <i class="fas fa-cart-arrow-down"></i>
+            <h3>Your cart is empty</h3>
+            <p>Start adding cars you like</p>
+        </div>
+    {% endif %}
+
+</div>
+{% endblock %}

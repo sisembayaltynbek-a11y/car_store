@@ -1,0 +1,25 @@
+{% load static %}
+{% load socialaccount %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'account/logout.css' %}">
+    <title>
+        {% block page_title %} Logout {% endblock %}
+    </title>
+</head>
+<body>
+    {% block content %}
+        <form method="post">
+            {% csrf_token %}
+            <h3>Do you really want to log out from your account?</h3>
+            {{ form.as_p }}
+            <button type="submit">Log Out</button>
+            <a href="{% url 'home' %}">Cancel</a>
+        </form>
+    {% endblock %}
+</body>
+</html>
