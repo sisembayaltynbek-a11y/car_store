@@ -16,7 +16,6 @@ class Seller(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
     )
-    name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     phonenumber = models.CharField(max_length=15)
     address = models.CharField(max_length=255, null=True, blank=True)

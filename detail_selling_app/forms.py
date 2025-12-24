@@ -13,7 +13,6 @@ class SellerSignUpForm(forms.Form):
     password1 = forms.CharField(widget=forms.PasswordInput)
     password2 = forms.CharField(widget=forms.PasswordInput)
 
-    name = forms.CharField(max_length=100)
     last_name = forms.CharField(max_length=100)
     phonenumber = forms.CharField(max_length=15)
     address = forms.CharField(required=False)

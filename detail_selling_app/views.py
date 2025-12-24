@@ -19,7 +19,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 
-@login_required
+# @login_required
 def home(request):
     all_categories = Categories.objects.all()
     return render(request, 'home.html', {
@@ -51,7 +51,7 @@ class AddCarView(LoginRequiredMixin, CreateView):
             seller, created = Seller.objects.get_or_create(
                 user=self.request.user,
                 defaults={  
-                    'name': self.request.user.first_name or self.request.user.username,
+                    'name': self.request.user.username,
                     'last_name': self.request.user.last_name or '',
                     'phonenumber': 'Not provided',
                     'address': 'Not provided'
