@@ -128,9 +128,7 @@ def car_details(request, slug):
 @require_POST
 def add_to_cart(request, car_id):
     car = get_object_or_404(Cars, id=car_id)
-
     cart = request.session.get('cart', {})
-
     car_id_str = str(car.id)
 
     if car_id_str in cart:
