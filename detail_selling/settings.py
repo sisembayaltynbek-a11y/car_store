@@ -140,6 +140,8 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'login'
 
+
+ACCOUNT_LOGOUT_ON_GET = True
 SOCIALACCOUNT_LOGIN_ON_GET = True
 
 
@@ -169,7 +171,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'shmakeyh12@gmail.com'
 EMAIL_HOST_PASSWORD = 'harhsvkwbynumtru'
 
-CSRF_TRUSTED_ORIGINS = [
+CSRF_TRUSTED_ORIGINS = [  
     "https://car-store-1lom.onrender.com",
 ]
 # ========================
