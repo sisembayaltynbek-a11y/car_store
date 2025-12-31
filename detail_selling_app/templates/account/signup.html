@@ -22,10 +22,14 @@
                     <a href="{% url 'login' %}"> Sign In </a>
                     <div class="social-login">
                         <div class="divider"><span>Or</span></div>
-                        <a href="{% provider_login_url 'google' %}" class="btn-social btn-google">
-                            <span class="icon"></span>
-                            Sign Up with Google
-                        </a>
+                        {% if socialaccount_providers.google %}
+                            <a href="{% provider_login_url 'google' %}" class="btn-social btn-google">
+                                <span class="icon"></span>
+                                Sign Up with Google
+                            </a>
+                        {% endif %}
+                        {% if socialaccount_providers.facebook %}
+                        {% endif %}
                     </div>
                 </form>
         </div>
