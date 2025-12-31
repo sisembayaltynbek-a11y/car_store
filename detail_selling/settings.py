@@ -9,7 +9,12 @@ SECRET_KEY = 'django-insecure-&-$wm3&s4&%q3gab+=9#ihiqch--k=(xufn)&(*#r7fpun9yex
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*']
+ALLOWED_HOSTS = [
+    "car-store-1lom.onrender.com",
+    "localhost",
+    "127.0.0.1",
+]
+
 
 
 # ========================
@@ -25,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
     'allauth',
     'allauth.account',
