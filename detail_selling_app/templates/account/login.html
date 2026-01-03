@@ -19,7 +19,7 @@
             <button type="submit">Sign In</button>
             <a href="{% url 'signup' %}"> Sign Up </a>
             <div class="social-login">
-                {% if socialaccount_providers.google %}
+                {% if socialaccount_providers %}
                     <div class="divider"><span>Or</span></div>
                     <a href="{% provider_login_url 'google' %}" class="btn-social btn-google">
                         <span class="icon"></span>
