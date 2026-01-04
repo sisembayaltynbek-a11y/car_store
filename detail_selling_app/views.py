@@ -52,7 +52,6 @@ class AddCarView(LoginRequiredMixin, CreateView):
                 user=self.request.user,
                 defaults={  
                     'name': self.request.user.username,
-                    'last_name': self.request.user.last_name or '',
                     'phonenumber': 'Not provided',
                     'address': 'Not provided'
                 }
@@ -79,17 +78,12 @@ class SellerSignUpView(FormView):
             username=form.cleaned_data['username'],
             email=form.cleaned_data['email'],
             password=form.cleaned_data['password1'],
-            first_name=form.cleaned_data['name'],
-            last_name=form.cleaned_data['last_name']
         )
 
         Seller.objects.create(
             user=user,
-            name=form.cleaned_data['name'],
-            last_name=form.cleaned_data['last_name'],
             phonenumber=form.cleaned_data['phonenumber'],
-            address=form.cleaned_data['address'],
-            liked_cars=form.cleaned_data['liked_cars']
+            address=form.cleaned_data.get('address', ''),
         )
 
         login(self.request, user)
