@@ -5,7 +5,6 @@ from django.contrib.auth.decorators import login_required
 from allauth.account.views import LoginView, LogoutView
 from .models import Cars, Categories, Seller
 from .forms import AddYourCar
-from django.views import View
 from django.contrib.auth.models import User
 from django.views.generic import FormView
 from django.urls import reverse_lazy
@@ -64,7 +63,9 @@ class AddCarView(LoginRequiredMixin, CreateView):
 
 class Login(LoginView):
     template_name = 'account/login.html'
-    success_url = '/home/'
+
+    def get_success_url(self):
+        return reverse_lazy('home')
 
 
 class SellerSignUpView(FormView):
@@ -86,9 +87,14 @@ class SellerSignUpView(FormView):
             address=form.cleaned_data.get('address', ''),
         )
 
-        login(self.request, user)
+        login(
+            self.request,
+            user,
+            backend="django.contrib.auth.backends.ModelBackend"
+        )
 
-        return super().form_valid(form)
+        return redirect(self.success_url)
+
 
 class Logout(LogoutView):
     template_name = 'account/logout.html'
