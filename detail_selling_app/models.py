@@ -16,12 +16,15 @@ class Seller(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
     )
+    name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
     phonenumber = models.CharField(max_length=15)
     address = models.CharField(max_length=255, null=True, blank=True)
     liked_cars = models.ManyToManyField('Cars', blank=True, related_name='liked_by')
 
     def __str__(self):
         return f"{self.name} {self.last_name}"
+
 
 class Cars(models.Model):
     image = models.ImageField(upload_to="photos/", null=True)
