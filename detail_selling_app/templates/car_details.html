@@ -1,46 +1,75 @@
+{% extends 'base.html' %}
 {% load static %}
+    
+{% block content %}
+    <link rel="stylesheet" href="{% static 'details.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-<div class="car-card">
-    <a href="{% url 'car-details' car.slug %}">
-        <div class="car-image-container">
-            {% if car.image %}
-                <img src="{{ car.image.url }}" alt="{{ car.title }}" class="car-image">
-            {% else %}
-                <img src="{% static 'img/default-car.jpg' %}" class="car-image">
-            {% endif %}
-            <div class="car-badge">New</div>
-        </div>
+    <div class="car-details-wrapper">
 
-        <div class="car-content">
-            <h3 class="car-title">{{ car.name }}</h3>
-            <div class="car-price">${{ car.price|floatformat:0 }}</div>
-            <p class="car-excerpt">{{ car.excerpt }}</p>
-            <div class="car-details">
-                <span><i class="fas fa-calendar"></i> {{ car.date|date:"Y"|default:"N/A" }}</span>
-                <span><i class="fas fa-car"></i> {{ car.category.brand }}</span>
+        <div class="car-card">
+
+            <!-- IMAGE -->
+            <div class="car-image-container">
+                {% if car.image %}
+                    <img src="{{ car.image.url }}" alt="{{ car.name }}">
+                {% else %}
+                    <img src="{% static 'img/default-car.jpg' %}" alt="Default car">
+                {% endif %}
+                <span class="car-badge">New</span>
+            </div>
+
+            <!-- CONTENT -->
+            <div class="car-info">
+                <h1 class="car-name">{{ car.name }}</h1>
+                <div class="car-price">${{ car.price|floatformat:0 }}</div>
+
+                {% if car.excerpt %}
+                    <p class="car-excerpt">{{ car.excerpt }}</p>
+                {% endif %}
+
+                <div class="car-meta">
+                    <span>
+                        <i class="fas fa-calendar"></i>
+                        {{ car.date|date:"Y" }}
+                    </span>
+                    <span>
+                        <i class="fas fa-tags"></i>
+                        {{ car.category }}
+                    </span>
+                </div>
+
+                <div class="car-description">
+                    {{ car.content|linebreaks }}
+                </div>
+
+                <!-- ACTIONS -->
+                <div class="car-actions">
+
+                    <form method="POST" action="{% url 'add-to-cart' car.id %}">
+                        {% csrf_token %}
+                        <button class="btn-cart">
+                            <i class="fas fa-cart-plus"></i> Add to cart
+                        </button>
+                    </form>
+
+                    {% if user.is_authenticated %}
+                        <form method="POST" action="{% url 'toggle-like' car.id %}">
+                            {% csrf_token %}
+                            {% if car in user.seller.liked_cars.all %}
+                                <button class="btn-like liked">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                            {% else %}
+                                <button class="btn-like">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            {% endif %}
+                        </form>
+                    {% endif %}
+
+                </div>
             </div>
         </div>
-    </a>
-
-    <!-- ADD TO CART -->
-    <form method="POST" action="{% url 'add-to-cart' car.id %}" class="add-to-cart-form">
-        {% csrf_token %}
-        <button class="cart-btn">
-            <i class="fas fa-cart-plus"></i>
-        </button>
-    </form>
-    {% if user.is_authenticated %}
-        <form method="POST" action="{% url 'toggle-like' car.id %}" class="like-form">
-            {% csrf_token %}
-            {% if car in user.seller.liked_cars.all %}
-                <button type="submit" class="like-btn liked">
-                    <i class="fas fa-heart"></i>
-                </button>
-            {% else %}
-                <button type="submit" class="like-btn">
-                    <i class="far fa-heart"></i>
-                </button>
-            {% endif %}
-        </form>
-    {% endif %}
-</div>
+    </div>
+{% endblock %}

@@ -1,179 +1,211 @@
-/* =========================
-   CAR DETAILS PAGE STYLES
-   ========================= */
+/* car_details.css */
 
-:root {
-    --primary: #1e3a8a;
-    --accent: #2563eb;
-    --danger: #dc2626;
-    --bg: #f8fafc;
-    --text-dark: #0f172a;
-    --text-muted: #64748b;
-    --border: #e2e8f0;
-    --radius: 14px;
-}
-
-/* Page wrapper */
-#in_details {
-    max-width: 1100px;
-    margin: 3rem auto;
-    padding: 2.5rem;
-    background: #ffffff;
-    border-radius: var(--radius);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
-    color: var(--text-dark);
-}
-
-/* Car name */
-#in_details > h2:first-of-type {
-    font-size: 2.2rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-}
-
-/* Price */
-#in_details > h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--accent);
-    margin-bottom: 2rem;
-}
-
-/* Car image */
-#in_details img {
-    width: 100%;
-    max-height: 480px;
-    object-fit: cover;
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    margin-bottom: 2.5rem;
-}
-
-/* Section titles */
-#in_details h2:not(:first-of-type) {
-    font-size: 1.6rem;
-    margin: 2.5rem 0 1rem;
-    padding-bottom: 0.4rem;
-    border-bottom: 2px solid var(--border);
-}
-
-/* Description & info blocks */
-#in_details address {
-    background: var(--bg);
+/* Base card styles */
+.car-card {
+    position: relative;
+    background: white;
     border-radius: 12px;
-    padding: 1.5rem;
-    font-style: normal;
-    line-height: 1.7;
-    margin-bottom: 2rem;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    margin-bottom: 30px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Description text */
-#in_details address h4 {
-    font-size: 1rem;
-    font-weight: 400;
-    color: var(--text-muted);
+.car-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
-/* Owner information */
-#in_details address h3 {
-    font-size: 1rem;
+.car-card > a {
+    text-decoration: none;
+    color: inherit;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Image container */
+.car-image-container {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+}
+
+.car-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.car-card:hover .car-image {
+    transform: scale(1.05);
+}
+
+/* Badge */
+.car-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #2ecc71;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.8rem;
     font-weight: 600;
-    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-/* =========================
-   ACTION BUTTONS
-   ========================= */
-
-.details-add-to-cart,
-.details-like-form {
-    display: inline-block;
-    margin-right: 1rem;
-    margin-top: 1rem;
+/* Content */
+.car-content {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Add to cart button */
-.add-to-cart-btn {
-    background: var(--accent);
-    color: #ffffff;
-    border: none;
-    padding: 0.9rem 1.8rem;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 999px;
-    cursor: pointer;
-    display: inline-flex;
+.car-title {
+    margin: 0 0 10px 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #2c3e50;
+    line-height: 1.3;
+}
+
+.car-price {
+    color: #e74c3c;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.car-excerpt {
+    color: #7f8c8d;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0 0 15px 0;
+    flex: 1;
+}
+
+/* Details */
+.car-details {
+    display: flex;
+    gap: 20px;
+    color: #636e72;
+    font-size: 0.9rem;
+    padding-top: 15px;
+    border-top: 1px solid #ecf0f1;
+}
+
+.car-details span {
+    display: flex;
     align-items: center;
-    gap: 0.6rem;
-    transition: all 0.25s ease;
+    gap: 6px;
 }
 
-.add-to-cart-btn:hover {
-    background: var(--primary);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.35);
+.car-details i {
+    color: #3498db;
+    font-size: 1rem;
 }
 
-/* Like button */
+/* Action buttons */
+.add-to-cart-form,
+.like-form {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    margin: 0;
+}
+
+.cart-btn,
 .like-btn {
-    background: #ffffff;
-    color: var(--danger);
-    border: 2px solid var(--danger);
-    padding: 0.8rem 1.6rem;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 999px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    background: white;
+    color: #2c3e50;
     cursor: pointer;
-    display: inline-flex;
+    font-size: 1.2rem;
+    display: flex;
     align-items: center;
-    gap: 0.6rem;
-    transition: all 0.25s ease;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.like-btn {
+    top: 15px;
+    left: 15px;
+    position: absolute;
+}
+
+.cart-btn:hover {
+    background: #3498db;
+    color: white;
+    transform: scale(1.1);
 }
 
 .like-btn:hover {
-    background: var(--danger);
-    color: #ffffff;
+    color: #e74c3c;
+    transform: scale(1.1);
 }
 
-/* Liked state */
 .like-btn.liked {
-    background: var(--danger);
-    color: #ffffff;
+    color: #e74c3c;
 }
 
-/* Login link */
-#in_details p a {
-    color: var(--accent);
-    font-weight: 600;
-    text-decoration: none;
+.like-btn.liked i {
+    font-weight: 900;
 }
 
-#in_details p a:hover {
-    text-decoration: underline;
-}
-
-/* =========================
-   RESPONSIVE
-   ========================= */
-
+/* Responsive design */
 @media (max-width: 768px) {
-    #in_details {
-        padding: 1.5rem;
+    .car-card {
+        margin-bottom: 20px;
     }
-
-    #in_details > h2:first-of-type {
-        font-size: 1.7rem;
+    
+    .car-image-container {
+        height: 200px;
     }
-
-    #in_details > h1 {
-        font-size: 1.5rem;
+    
+    .car-content {
+        padding: 15px;
     }
+    
+    .car-title {
+        font-size: 1.2rem;
+    }
+    
+    .car-price {
+        font-size: 1.3rem;
+    }
+    
+    .car-details {
+        font-size: 0.85rem;
+        gap: 15px;
+    }
+}
 
-    .add-to-cart-btn,
+@media (max-width: 480px) {
+    .car-image-container {
+        height: 180px;
+    }
+    
+    .car-badge {
+        font-size: 0.75rem;
+        padding: 3px 10px;
+    }
+    
+    .cart-btn,
     .like-btn {
-        width: 100%;
-        justify-content: center;
-        margin-bottom: 0.8rem;
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
     }
 }
